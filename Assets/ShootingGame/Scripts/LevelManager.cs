@@ -178,14 +178,15 @@ namespace ShootingGame
                 // TODO 발사제한 UI 표시
                 if (m_fireCountdown < 0)
                 {
-                    break;
+                    // TODO 총알 하나 감소로 바꾸기
+                    //break;
                 }
             }
             // 게임 종료 프로세스 (게임종료 상황이 아니면)
-            if(IS_GAMEOVER)
+            /*if(IS_GAMEOVER)
             {
                 GameOver();
-            }
+            }*/
         }
 
         IEnumerator ToyMoveCo()

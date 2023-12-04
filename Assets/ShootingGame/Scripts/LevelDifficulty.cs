@@ -28,7 +28,7 @@ namespace ShootingGame
     {
         Difficulty difficulty = Difficulty.Easy;
         float fireCountdown = 15f;
-        int bulletCount = 10;
+        int bulletCount = 30;
         float toySpeed = 0f;
         float toySize = 1f;
     }
@@ -36,7 +36,7 @@ namespace ShootingGame
     {
         Difficulty difficulty = Difficulty.Normal;
         float fireCountdown = 10f;
-        int bulletCount = 15;
+        int bulletCount = 30;
         float toySpeed = 0.5f;
         float toySize = 1f;
     }
@@ -44,7 +44,7 @@ namespace ShootingGame
     {
         Difficulty difficulty = Difficulty.Hard;
         float fireCountdown = 5f;
-        int bulletCount = 20;
+        int bulletCount = 30;
         float toySpeed = 1f;
         float toySize = 0.5f;
     }

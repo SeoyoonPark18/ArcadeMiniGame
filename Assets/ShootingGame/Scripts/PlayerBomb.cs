@@ -1,3 +1,4 @@
+using ShootingGame;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,20 +27,29 @@ namespace PlayerBomb
         void Update()
         {
             //마우스 왼쪽 버튼 입력
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                //총알 생성
-                GameObject bomb = Instantiate(bombFactory);
+                LevelManager.Instance.playerFiresEvent.Invoke();    // 플레이어 발사 이벤트 트리거
+                bool isBuffedBullet = LevelManager.Instance.UsePowerBullet();
 
-                //총알 위치를 발사 위치로 이동
-                bomb.transform.position = bombPosition.transform.position;
+                if (isBuffedBullet)     // 강화 총알
+                {
 
-                //폭탄의 리지드바디 컴포넌트를 가져옴
-                Rigidbody rb = bomb.GetComponent<Rigidbody>();
+                }
+                else    // 일반 총알
+                {
+                    //총알 생성
+                    GameObject bomb = Instantiate(bombFactory);
 
-                //리지드바디로부터 카메라의 정면으로 폭탄 파워 줌
-                rb.AddForce(Camera.main.transform.forward * bombPower, ForceMode.Impulse);
+                    //총알 위치를 발사 위치로 이동
+                    bomb.transform.position = bombPosition.transform.position;
 
+                    //폭탄의 리지드바디 컴포넌트를 가져옴
+                    Rigidbody rb = bomb.GetComponent<Rigidbody>();
+
+                    //리지드바디로부터 카메라의 정면으로 폭탄 파워 줌
+                    rb.AddForce(Camera.main.transform.forward * bombPower, ForceMode.Impulse);
+                }
             }
         }
     }

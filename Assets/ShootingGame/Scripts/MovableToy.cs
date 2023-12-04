@@ -26,13 +26,18 @@ namespace ShootingGame
 
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("collision");
             if (collision.transform.CompareTag("Bullet"))
             {
-                // 질량 반토막
-                rigid.mass /= 2;
+                StartCoroutine(MassDiscountCo());
             }
             LevelManager.Instance.toyCollidesEvent.Invoke();    // 총알 모두 소모했을 시 게임 종료 트리거 갱신
+        }
+
+        IEnumerator MassDiscountCo()
+        {
+            yield return new WaitForSeconds(1f);
+            // 질량 반토막
+            rigid.mass /= 2;
         }
     }
 }
