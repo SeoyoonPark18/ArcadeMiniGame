@@ -22,7 +22,7 @@ namespace ShootingGame
         private int bulletCounts;   // 현재 남은 총알 개수
         public int BULLET_COUNTS => bulletCounts;
 
-        private int bulletBuffCounts = 0;   // 사용 가능한 버프 개수
+        private int bulletBuffCounts = 2;   // 사용 가능한 버프 개수
         public int BULLET_BUFF_COUNTS => bulletBuffCounts;
 
         // variants
@@ -75,11 +75,11 @@ namespace ShootingGame
         public void StartGame(Difficulty difficulty)
         {
             if (difficulty == Difficulty.Easy)
-                diff = new Easy();
+                diff = GetDifficulty.GetEasy();
             else if (difficulty == Difficulty.Normal)
-                diff = new Normal();
+                diff = GetDifficulty.GetNormal();
             else if (difficulty == Difficulty.Hard)
-                diff = new Hard();
+                diff = GetDifficulty.GetHard();
             else
                 return;
 
@@ -137,6 +137,7 @@ namespace ShootingGame
         /// <returns></returns>
         IEnumerator SpawnToysCo()
         {
+            yield return null;
             // TODO 총알 UI
             bulletCounts = diff.BULLET_COUNT;
 
@@ -144,7 +145,9 @@ namespace ShootingGame
             {
                 for (int j = 0; j < spawnLists[i].Count; j++)
                 {
-                    GameObject tgt = prefabs[Random.Range(0, prefabs.Count)];
+                    int rnd = Random.Range(0, diff.BOUND);
+                    GameObject tgt = prefabs[rnd];
+
                     Vector3 rot = Camera.main.transform.position - spawnLists[i][j].position;
                     rot.y = 0;
                     GameObject go = Instantiate(tgt, spawnLists[i][j].position, 
@@ -178,7 +181,9 @@ namespace ShootingGame
                 // TODO 발사제한 UI 표시
                 if (m_fireCountdown < 0)
                 {
-                    // TODO 총알 하나 감소로 바꾸기
+                    // 총알 하나 감소로 바꾸기
+                    PlayerFiresListener();
+                    m_fireCountdown = diff.FIRE_COUNTDOWN;
                     //break;
                 }
             }

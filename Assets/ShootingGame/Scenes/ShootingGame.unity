@@ -608,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPosition: {fileID: 961593427}
   bombFactory: {fileID: 1155535608744270, guid: 45fc27cac2fc6024e930c5380b019f44, type: 3}
+  buffedBombFactory: {fileID: 1137650238884008, guid: 91a268ff863283649ae6dce76cf7ea65, type: 3}
   bombPower: 150
 --- !u!1 &1479285048
 GameObject:

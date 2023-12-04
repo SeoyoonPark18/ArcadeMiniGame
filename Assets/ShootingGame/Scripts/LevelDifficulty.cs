@@ -10,42 +10,61 @@ namespace ShootingGame
         Normal,
         Hard
     }
-    public class LevelDifficulty
+    public struct LevelDifficulty
     {
-        protected Difficulty difficulty;
-        protected float fireCountdown;
-        protected int bulletCount;
-        protected float toySpeed;
-        protected float toySize;
+        public Difficulty difficulty;
+        public float fireCountdown;
+        public int bulletCount;
+        public float toySpeed;
+        public float toySize;
+        public int bound;
 
         public Difficulty DIFFICULTY => difficulty;
         public float FIRE_COUNTDOWN => fireCountdown;
         public int BULLET_COUNT => bulletCount;
         public float TOY_SPEED => toySpeed;
         public float TOY_SIZE => toySize;
+        public int BOUND => bound;
     }
-    public class Easy : LevelDifficulty
+
+    public class GetDifficulty
     {
-        Difficulty difficulty = Difficulty.Easy;
-        float fireCountdown = 15f;
-        int bulletCount = 30;
-        float toySpeed = 0f;
-        float toySize = 1f;
-    }
-    public class Normal : LevelDifficulty
-    {
-        Difficulty difficulty = Difficulty.Normal;
-        float fireCountdown = 10f;
-        int bulletCount = 30;
-        float toySpeed = 0.5f;
-        float toySize = 1f;
-    }
-    public class Hard : LevelDifficulty
-    {
-        Difficulty difficulty = Difficulty.Hard;
-        float fireCountdown = 5f;
-        int bulletCount = 30;
-        float toySpeed = 1f;
-        float toySize = 0.5f;
+        public static LevelDifficulty GetEasy()
+        {
+            return new LevelDifficulty
+            {
+                difficulty = Difficulty.Easy,
+                fireCountdown = 15f,
+                bulletCount = 30,
+                toySpeed = 0f,
+                toySize = 1f,
+                bound = 3
+            };
+
+        }
+        public static LevelDifficulty GetNormal()
+        {
+            return new LevelDifficulty
+            {
+                difficulty = Difficulty.Normal,
+                fireCountdown = 10f,
+                bulletCount = 30,
+                toySpeed = 0.5f,
+                toySize = 1f,
+                bound = 5
+            };
+        }
+        public static LevelDifficulty GetHard()
+        {
+            return new LevelDifficulty
+            {
+                difficulty = Difficulty.Hard,
+                fireCountdown = 5f,
+                bulletCount = 30,
+                toySpeed = 1f,
+                toySize = 0.5f,
+                bound = 8
+            };
+        }
     }
 }
