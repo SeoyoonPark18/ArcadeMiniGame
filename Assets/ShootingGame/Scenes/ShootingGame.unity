@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombPosition: {fileID: 961593427}
-  bombFactory: {fileID: 8130604159631608762, guid: bcdd828374e11f5428b2917a825e9129, type: 3}
+  bombFactory: {fileID: 1155535608744270, guid: 45fc27cac2fc6024e930c5380b019f44, type: 3}
   bombPower: 15
   bulletEffect: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
 --- !u!1 &1479285048

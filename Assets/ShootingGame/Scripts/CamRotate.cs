@@ -7,7 +7,7 @@ namespace CamRotate
     public class CamRotate : MonoBehaviour
     {
         //마우스 회전 속도
-        public float rotSpeed = 4.0f;
+        public float rotSpeed = 0.5f;
 
         //회전 값 변수
         private float mx = 0;
@@ -33,7 +33,7 @@ namespace CamRotate
             float xRot = -Input.GetAxis("Mouse Y") * rotSpeed;
 
             //상하 회전을 -45~ 80도로 제한
-            mx = Mathf.Clamp(mx+xRot, -45f, 80f); //수학관련함수: Mathf. Clapm(최소 최대값 설정해서 float값이 범이 이외의 값을 넘지 않도록)
+            mx = Mathf.Clamp(mx + xRot, -45f, 80f); //수학관련함수: Mathf. Clapm(최소 최대값 설정해서 float값이 범이 이외의 값을 넘지 않도록)
 
             //카메라 회전
             transform.eulerAngles = new Vector3(mx, my, 0); //회전시키는 함수에 축 값을 넣어줌
