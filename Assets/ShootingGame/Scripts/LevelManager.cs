@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
+using UnityEngine.UI;
 
 namespace ShootingGame
 {
@@ -168,14 +170,17 @@ namespace ShootingGame
         /// <param name="fireCountdown"></param>
         /// <returns></returns>
         private float m_fireCountdown;
+
         IEnumerator FireCountdownCo()
         {
+            Slider slider = GameObject.Find("BombTimer").GetComponent<Slider>();
             m_fireCountdown = diff.FIRE_COUNTDOWN;
             while (true)
             {
                 yield return null;
                 m_fireCountdown -= Time.deltaTime;
-                // TODO 발사제한 UI 표시
+                Debug.Log(diff.FIRE_COUNTDOWN);
+                slider.value = (float)(m_fireCountdown / diff.FIRE_COUNTDOWN);
                 if (m_fireCountdown < 0)
                 {
                     // TODO 총알 하나 감소로 바꾸기
