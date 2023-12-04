@@ -14,6 +14,7 @@ public class PageManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // æ¿¿¸»Ø-Roun1
         /*
         if (Input.GetMouseButton(0))
@@ -29,6 +30,8 @@ public class PageManager : MonoBehaviour
             SceneManager.LoadScene("Round1");
         }
         */
+
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 
