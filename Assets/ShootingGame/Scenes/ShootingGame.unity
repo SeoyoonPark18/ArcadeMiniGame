@@ -464,7 +464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b43fc9f5e830f974f8fab1776b27c5f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 727ee719aba3f924ea67d32ce5dec957, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -608,8 +608,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPosition: {fileID: 961593427}
   bombFactory: {fileID: 1155535608744270, guid: 45fc27cac2fc6024e930c5380b019f44, type: 3}
+  buffedBombFactory: {fileID: 1137650238884008, guid: 91a268ff863283649ae6dce76cf7ea65, type: 3}
   bombPower: 150
-  bulletEffect: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
 --- !u!1 &1479285048
 GameObject:
   m_ObjectHideFlags: 0
