@@ -12,14 +12,9 @@ namespace PlayerBomb
         public GameObject bombFactory;
         //투척 파워
         public float bombPower = 15f;
-        //총알 이펙트
-        public GameObject bulletEffect;
-        //파티클 시스템
-        ParticleSystem ps;
 
         void Start()
         {
-            ps = bulletEffect.GetComponent<ParticleSystem>(); //bulletEffect의 컴포넌트를 가져옴
         }
 
         // Update is called once per frame
