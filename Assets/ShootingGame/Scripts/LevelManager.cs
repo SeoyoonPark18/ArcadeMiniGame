@@ -7,21 +7,43 @@ namespace ShootingGame
 {
     public class LevelManager : MonoBehaviour
     {
+        // singleton
+        private static LevelManager instance;
+        public static LevelManager Instance => instance;
+
         // events
         [HideInInspector] public UnityEvent playerFiresEvent; // 발사 카운트다운 초기화, 총알개수 -1
+        [HideInInspector] public UnityEvent toyCollidesEvent; // 게임 종료 확인용 이벤트
 
         // status
-        private bool isGameover = false;
+        private bool isGameover = false;    // 게임 종료되었는가
         public bool IS_GAMEOVER => isGameover;
 
+        private int bulletCounts;   // 현재 남은 총알 개수
+        public int BULLET_COUNTS => bulletCounts;
+
+        private int bulletBuffCounts = 0;   // 사용 가능한 버프 개수
+        public int BULLET_BUFF_COUNTS => bulletBuffCounts;
+
         // variants
-        [SerializeField] private Transform[] serial_spawns = new Transform[5];
-        List<List<Transform>> spawnLists;
-        public List<GameObject> prefabs = new List<GameObject>();
-        Transform toyParent;
+        [SerializeField] private Transform[] serial_spawns = new Transform[5];  // 인스펙터용
+        List<List<Transform>> spawnLists;   // 이지모드 스폰포인트
+
+        public List<GameObject> prefabs = new List<GameObject>();   // 생성할 인형 프리팹들
+        Transform toyParent;    // 인형이 생성될 transfrom
 
         private void Awake()
         {
+            // singleton
+            if(instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+
             // 스폰 지점 초기화    
             spawnLists = new List<List<Transform>>();
             for (int i = 0; i < serial_spawns.Length; i++)
@@ -38,12 +60,13 @@ namespace ShootingGame
         private void Start()
         {
             playerFiresEvent.AddListener(PlayerFiresListener);
+            toyCollidesEvent.AddListener(ToyCollidesListener);
 
             // TODO 디버그용 나중에 삭제
             StartGame(Difficulty.Easy);
         }
 
-
+        #region Functions
         /// <summary>
         /// 슈팅 게임 시작!!!
         /// </summary>
@@ -63,25 +86,70 @@ namespace ShootingGame
             // 인형 스폰 코루틴 시작
             StartCoroutine(SpawnToysCo());
         }
+        /// <summary>
+        /// 강화된 총알 사용 가능 시 true 리턴,
+        /// 사용 불가능하면 false 리턴
+        /// </summary>
+        /// <returns></returns>
+        public bool UsePowerBullet()
+        {
+            if (bulletBuffCounts > 0)
+            {
+                bulletBuffCounts--;
+                return true;
+            }
+            return false;
+        }
+        public void GameOver()
+        {
+            Debug.Log("Game Over!!!");
+            isGameover = true;
+            // TODO 게임종료 UI 팝업
+        }
+        #endregion
 
+        #region Listeners
+        /// <summary>
+        /// 플레이어가 총알 발사 시 작동할 이벤트
+        /// </summary>
+        void PlayerFiresListener()
+        {
+            m_fireCountdown = diff.FIRE_COUNTDOWN;  // 총알 제한 발사 시간 초기화
+            if (--bulletCounts == 0)
+            {
+                // 총알 모두 소모, 게임 끝
+                if (IS_GAMEOVER == false)
+                {
+                    StartCoroutine(CheckGameOver());
+                }
+            }
+        }
+        void ToyCollidesListener()
+        {
+            m_gameOverCountdown = 5f;
+        }
+        #endregion
+
+        #region Coroutines
         /// <summary>
         /// 게임 시작 전에 인형 스폰해줌 (Easy)
         /// </summary>
         /// <returns></returns>
         IEnumerator SpawnToysCo()
         {
-            // TODO 총알 충전
+            // TODO 총알 UI
+            bulletCounts = diff.BULLET_COUNT;
 
             for (int i = 0; i < spawnLists.Count; i++)
             {
                 for (int j = 0; j < spawnLists[i].Count; j++)
                 {
-                    // TODO 인형 소환 (크기 설정)
                     GameObject tgt = prefabs[Random.Range(0, prefabs.Count)];
                     Vector3 rot = Camera.main.transform.position - spawnLists[i][j].position;
                     rot.y = 0;
                     GameObject go = Instantiate(tgt, spawnLists[i][j].position, 
                         Quaternion.LookRotation(rot), toyParent);
+                    //go.transform.localScale *= diff.TOY_SIZE;
                     yield return new WaitForSeconds(0.1f);
                 }
             }
@@ -102,12 +170,12 @@ namespace ShootingGame
         private float m_fireCountdown;
         IEnumerator FireCountdownCo()
         {
-            // TODO 발사 카운트다운 시작
             m_fireCountdown = diff.FIRE_COUNTDOWN;
             while (true)
             {
                 yield return null;
                 m_fireCountdown -= Time.deltaTime;
+                // TODO 발사제한 UI 표시
                 if (m_fireCountdown < 0)
                 {
                     break;
@@ -119,22 +187,32 @@ namespace ShootingGame
                 GameOver();
             }
         }
-        void PlayerFiresListener()
-        {
-            m_fireCountdown = diff.FIRE_COUNTDOWN;
-        }
 
         IEnumerator ToyMoveCo()
         {
-            // TODO 인형들 움직임 시작
             yield return null;
+            for(int i = 0; i < toyParent.childCount; i++)
+            {
+                MovableToy mov = toyParent.GetChild(i).GetComponent<MovableToy>();
+                mov.SetSpeed(diff.TOY_SPEED);
+                mov.StartMove();
+            }
         }
 
-        public void GameOver()
+        float m_gameOverCountdown = 5f;
+        IEnumerator CheckGameOver()
         {
-            Debug.Log("Game Over!!!");
-            isGameover = true;
-            // TODO 게임종료 UI 팝업
+            while(true)
+            {
+                yield return null;
+                m_gameOverCountdown -= Time.deltaTime;
+                if (m_gameOverCountdown < 0)
+                    break;
+            }
+            if(IS_GAMEOVER)
+                GameOver();
         }
+        #endregion
+
     }
 }

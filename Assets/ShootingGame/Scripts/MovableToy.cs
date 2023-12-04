@@ -7,23 +7,32 @@ namespace ShootingGame
     public class MovableToy : MonoBehaviour
     {
         Rigidbody rigid;
+        float speed;
+
         private void Awake()
         {
             rigid = GetComponentInChildren<Rigidbody>();
         }
-        /// <summary>
-        /// 속도와 사이즈 초기값 세팅
-        /// </summary>
-        /// <param name="v_speed"></param>
-        /// <param name="v_size"></param>
-        public void Init(float v_speed, float v_size) 
-        { 
+
+        public void StartMove()
+        {
+
+        }
+
+        public void SetSpeed(float v_speed)
+        {
+            speed = v_speed;
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            // 질량 반토막
-            rigid.mass /= 2;
+            Debug.Log("collision");
+            if (collision.transform.CompareTag("Bullet"))
+            {
+                // 질량 반토막
+                rigid.mass /= 2;
+            }
+            LevelManager.Instance.toyCollidesEvent.Invoke();    // 총알 모두 소모했을 시 게임 종료 트리거 갱신
         }
     }
 }
