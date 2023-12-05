@@ -22,7 +22,7 @@ public class ClawMove : MonoBehaviour
     public GameObject claw_2;
     public GameObject claw_3;
     public GameObject claw_4;
-    float gravingSpeed = 0.2f; //잡는 속도
+    float gravingSpeed = 0.15f; //잡는 속도
     float gravingTime = 0.6f; //잡는 시간
     Vector3 originPos;
 
