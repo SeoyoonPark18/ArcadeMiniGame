@@ -289,7 +289,7 @@ namespace ShootingGame
             }
         }
 
-        float GAME_OVER_COUNTDOWN = 5f;
+        float GAME_OVER_COUNTDOWN = 3f;
         float m_gameOverCountdown = 5f;
         IEnumerator CheckGameOver()
         {
