@@ -77,7 +77,21 @@ namespace ShootingGame
             toyCollidesEvent.AddListener(ToyCollidesListener);
 
             // TODO 디버그용 나중에 삭제
-            StartGame(Difficulty.Normal);
+            if (MenuManager.level == 1)
+            {
+                StartGame(Difficulty.Easy);
+
+            }
+            else if (MenuManager.level == 2)
+            {
+                StartGame(Difficulty.Normal);
+
+            }
+            else if (MenuManager.level >= 3)
+            {
+                StartGame(Difficulty.Hard);
+
+            }
         }
 
         #region Functions

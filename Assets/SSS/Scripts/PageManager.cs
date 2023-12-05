@@ -32,6 +32,11 @@ public class PageManager : MonoBehaviour
 
     }
 
+    public void OnClickShootGame()
+    {
+        SceneManager.LoadScene("ShootingGame");
+    }
+
     public void RestartGame()
     {
         Time.timeScale = 1f;
