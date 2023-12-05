@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ModeStartUI : MonoBehaviour
 {
@@ -14,5 +15,17 @@ public class ModeStartUI : MonoBehaviour
     void Update()
     {
         
+    }
+    public void GoMainmenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void QuitMenu()
+    {
+        Application.Quit();
+    }
+    public void ReroadGame()
+    {
+        SceneManager.LoadScene("ShootingGame");
     }
 }
