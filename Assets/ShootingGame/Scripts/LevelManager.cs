@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
+using System.Text;
 
 namespace ShootingGame
 {
@@ -27,7 +28,7 @@ namespace ShootingGame
         private int bulletBuffCounts = 2;   // 사용 가능한 버프 개수
         public int BULLET_BUFF_COUNTS => bulletBuffCounts;
 
-        public TextMeshProUGUI BombCountTx;
+        private TextMeshProUGUI BombCountTx;
 
         // variants
         [SerializeField] private Transform[] serial_spawns = new Transform[5];  // 인스펙터용
@@ -59,6 +60,9 @@ namespace ShootingGame
 
             // 인형 부모 생성
             toyParent = new GameObject("ToyParent").transform;
+
+            // 총알 개수 카운트
+            BombCountTx = GameObject.Find("TX_BombCount").GetComponent<TextMeshProUGUI>();
         }
 
         private void Start()
@@ -97,7 +101,7 @@ namespace ShootingGame
         /// <returns></returns>
         public bool UsePowerBullet()
         {
-            if (bulletBuffCounts > 0)
+            if (BULLET_BUFF_COUNTS > 0)
             {
                 bulletBuffCounts--;
                 return true;
@@ -110,7 +114,7 @@ namespace ShootingGame
         public void AddPowerBullet()
         {
             bulletBuffCounts++;
-            // TODO 강화총알 UI, 갱신
+            BombCount();
         }
         public void GameOver()
         {
@@ -143,7 +147,13 @@ namespace ShootingGame
         }
         void BombCount()
         {
-            BombCountTx.text =  bulletCounts.ToString();
+            StringBuilder sb = new StringBuilder();
+            if (BULLET_BUFF_COUNTS > 0)
+                sb.Append("<color=#FF0000>");
+            sb.Append(bulletCounts.ToString());
+            if (BULLET_BUFF_COUNTS > 0)
+                sb.Append("</color>");
+            BombCountTx.text =  sb.ToString();
         }
         #endregion
 
@@ -155,8 +165,8 @@ namespace ShootingGame
         IEnumerator SpawnToysCo()
         {
             yield return null;
-            // TODO 총알 UI
             bulletCounts = diff.BULLET_COUNT;
+            BombCount();
 
             for (int i = 0; i < spawnLists.Count; i++)
             {
