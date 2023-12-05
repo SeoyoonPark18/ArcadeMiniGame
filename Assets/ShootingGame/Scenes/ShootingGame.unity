@@ -712,10 +712,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToyCabinit
       objectReference: {fileID: 0}
-    - target: {fileID: 7228745831142154858, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e1546f611814b3b4e814bfc4a6047b1d, type: 2}
     - target: {fileID: 8354382318836156618, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
