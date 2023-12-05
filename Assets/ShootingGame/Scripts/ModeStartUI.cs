@@ -9,7 +9,7 @@ public class ModeStartUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -23,7 +23,7 @@ public class ModeStartUI : MonoBehaviour
     }
     public void QuitMenu()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
     public void ReroadGame()
     {
