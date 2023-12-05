@@ -15,22 +15,6 @@ public class PageManager : MonoBehaviour
     void Update()
     {
 
-        // æ¿¿¸»Ø-Roun1
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            SceneManager.LoadScene("Round1");
-        }
-        */
-
-        // æ¿¿¸»Ø-Roun2
-        /*
-        if (Input.GetMouseButton(0))
-        {
-            SceneManager.LoadScene("Round1");
-        }
-        */
-
         Cursor.lockState = CursorLockMode.Confined;
 
     }
@@ -39,6 +23,12 @@ public class PageManager : MonoBehaviour
     public void OnclickScene()
     {
         SceneManager.LoadScene("Round1");
+
+    }
+
+    public void OnclickScene2()
+    {
+        SceneManager.LoadScene("Round2");
 
     }
 
