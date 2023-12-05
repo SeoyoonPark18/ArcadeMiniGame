@@ -7,13 +7,13 @@ namespace PlayerBomb
 {
     public class PlayerBomb : MonoBehaviour
     {
-        //¹ß»ç À§Ä¡
+        //ï¿½ß»ï¿½ ï¿½ï¿½Ä¡
         public GameObject bombPosition;
-        // ÃÑ¾Ë ¿ÀºêÁ§Æ® ÇÁ¸®ÆÕ
+        // ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public GameObject bombFactory;
-        // °­È­ ÃÑ¾Ë ¿ÀºêÁ§Æ® ÇÁ¸®ÆÕ
+        // ï¿½ï¿½È­ ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public GameObject buffedBombFactory;
-        //ÅõÃ´ ÆÄ¿ö
+        //ï¿½ï¿½Ã´ ï¿½Ä¿ï¿½
         public float bombPower = 15f;
 
         void Start()
@@ -23,38 +23,42 @@ namespace PlayerBomb
         // Update is called once per frame
         void Update()
         {
-            //¸¶¿ì½º ¿ÞÂÊ ¹öÆ° ÀÔ·Â
+            //ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½Ô·ï¿½
             if (Input.GetMouseButtonDown(0))
             {
-                bool isBuffedBullet = LevelManager.Instance.UsePowerBullet();
-                LevelManager.Instance.playerFiresEvent.Invoke();    // ÇÃ·¹ÀÌ¾î ¹ß»ç ÀÌº¥Æ® Æ®¸®°Å
-
-                if (isBuffedBullet)     // °­È­ ÃÑ¾Ë
+                if(LevelManager.Instance.BULLET_COUNTS <= 0)
                 {
-                    //ÃÑ¾Ë »ý¼º
+                    return;
+                }
+                bool isBuffedBullet = LevelManager.Instance.UsePowerBullet();
+                LevelManager.Instance.playerFiresEvent.Invoke();    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß»ï¿½ ï¿½Ìºï¿½Æ® Æ®ï¿½ï¿½ï¿½ï¿½
+
+                if (isBuffedBullet)     // ï¿½ï¿½È­ ï¿½Ñ¾ï¿½
+                {
+                    //ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
                     GameObject bomb = Instantiate(buffedBombFactory);
 
-                    //ÃÑ¾Ë À§Ä¡¸¦ ¹ß»ç À§Ä¡·Î ÀÌµ¿
+                    //ï¿½Ñ¾ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
                     bomb.transform.position = bombPosition.transform.position;
 
-                    //ÆøÅºÀÇ ¸®Áöµå¹Ùµð ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
+                    //ï¿½ï¿½Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     Rigidbody rb = bomb.GetComponent<Rigidbody>();
 
-                    //¸®Áöµå¹Ùµð·ÎºÎÅÍ Ä«¸Þ¶óÀÇ Á¤¸éÀ¸·Î ÆøÅº ÆÄ¿ö ÁÜ
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½Îºï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Åº ï¿½Ä¿ï¿½ ï¿½ï¿½
                     rb.AddForce(Camera.main.transform.forward * bombPower * 1.5f, ForceMode.Impulse);
                 }
-                else    // ÀÏ¹Ý ÃÑ¾Ë
+                else    // ï¿½Ï¹ï¿½ ï¿½Ñ¾ï¿½
                 {
-                    //ÃÑ¾Ë »ý¼º
+                    //ï¿½Ñ¾ï¿½ ï¿½ï¿½ï¿½ï¿½
                     GameObject bomb = Instantiate(bombFactory);
 
-                    //ÃÑ¾Ë À§Ä¡¸¦ ¹ß»ç À§Ä¡·Î ÀÌµ¿
+                    //ï¿½Ñ¾ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
                     bomb.transform.position = bombPosition.transform.position;
 
-                    //ÆøÅºÀÇ ¸®Áöµå¹Ùµð ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿È
+                    //ï¿½ï¿½Åºï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     Rigidbody rb = bomb.GetComponent<Rigidbody>();
 
-                    //¸®Áöµå¹Ùµð·ÎºÎÅÍ Ä«¸Þ¶óÀÇ Á¤¸éÀ¸·Î ÆøÅº ÆÄ¿ö ÁÜ
+                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ùµï¿½Îºï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Åº ï¿½Ä¿ï¿½ ï¿½ï¿½
                     rb.AddForce(Camera.main.transform.forward * bombPower, ForceMode.Impulse);
                 }
             }
