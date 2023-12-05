@@ -6,8 +6,8 @@ public class R1MenuManager : MonoBehaviour
 {
     public int SP;
 
-    public GameObject R1Menu1;  // Round1-LiveMenu
-    public GameObject R1Menu2;  // Round1-DieMenu
+    //public GameObject R1Menu1;  // Round1-LiveMenu
+    //public GameObject R1Menu2;  // Round1-DieMenu
 
 
 
@@ -15,10 +15,10 @@ public class R1MenuManager : MonoBehaviour
     void Start()
     {
         // ¸ñ¼û
-        SP = TimeManager.Starpoint;
+        SP = GameManager_.Starpoint;
 
-        R1Menu1.SetActive(false);
-        R1Menu2.SetActive(false);
+        //R1Menu1.SetActive(false);
+        //R1Menu2.SetActive(false);
     }
 
     // Update is called once per frame

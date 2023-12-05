@@ -32,6 +32,24 @@ public class PageManager : MonoBehaviour
 
     }
 
+    public void OnClickShootGame()
+    {
+        SceneManager.LoadScene("ShootingGame");
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene("Round1");    // (현재 로드하고 있는 씬을 가져와라)
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+
 
 
 }
