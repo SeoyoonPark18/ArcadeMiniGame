@@ -27,6 +27,8 @@ namespace ShootingGame
         private int bulletBuffCounts = 2;   // 사용 가능한 버프 개수
         public int BULLET_BUFF_COUNTS => bulletBuffCounts;
 
+        public TextMeshProUGUI BombCountTx;
+
         // variants
         [SerializeField] private Transform[] serial_spawns = new Transform[5];  // 인스펙터용
         List<List<Transform>> spawnLists;   // 이지모드 스폰포인트
@@ -125,10 +127,15 @@ namespace ShootingGame
                     StartCoroutine(CheckGameOver());
                 }
             }
+            BombCount();
         }
         void ToyCollidesListener()
         {
             m_gameOverCountdown = 5f;
+        }
+        void BombCount()
+        {
+            BombCountTx.text =  bulletCounts.ToString();
         }
         #endregion
 
@@ -176,7 +183,7 @@ namespace ShootingGame
 
         IEnumerator FireCountdownCo()
         {
-            Slider slider = GameObject.Find("BombTimer").GetComponent<Slider>();
+            Slider slider = GameObject.Find("Slider_BombTimer").GetComponent<Slider>();
             m_fireCountdown = diff.FIRE_COUNTDOWN;
             while (true)
             {
