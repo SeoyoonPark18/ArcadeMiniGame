@@ -1380,6 +1380,8 @@ MonoBehaviour:
   gameLabel1: {fileID: 654421288}
   gameLabel2: {fileID: 1720369858}
   gameLabel3: {fileID: 1154054114}
+  R1Menu1: {fileID: 0}
+  R1Menu2: {fileID: 0}
 --- !u!1 &1154054114
 GameObject:
   m_ObjectHideFlags: 0
