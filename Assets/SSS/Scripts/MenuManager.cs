@@ -8,16 +8,20 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 
+    
+
     // UI 오브젝트 변수
     public GameObject gameLabel1;  // Menu1
     public GameObject gameLabel2;  // Menu2
     public GameObject gameLabel3;  // Menu3
 
 
+
+
     static public int level; //전체 레벨 지정 변수 !!!!!! (1이면 easy/ 2면 normal/ 3이면 hard)
 
 
-    // Start is called before the first frame update
+
     void Start()
     {
         //초기 메뉴 활성화 설정. 
@@ -25,15 +29,15 @@ public class MenuManager : MonoBehaviour
         gameLabel2.SetActive(false);
         gameLabel3.SetActive(false);
 
-
-
+    
         
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+  
     }
 
 
@@ -75,7 +79,7 @@ public class MenuManager : MonoBehaviour
     }
     public void OnclickL3()
     { 
-        float _time = 30.0f;  // Hard
+        //float _time = 30.0f;  // Hard
         level = 3;
 
         gameLabel2.SetActive(false);
