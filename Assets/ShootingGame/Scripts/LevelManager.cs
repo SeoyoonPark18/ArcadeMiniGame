@@ -102,6 +102,14 @@ namespace ShootingGame
             }
             return false;
         }
+        /// <summary>
+        /// 아이템 획득으로 강화 총알 추가
+        /// </summary>
+        public void AddPowerBullet()
+        {
+            bulletBuffCounts++;
+            // TODO 강화총알 UI, 갱신
+        }
         public void GameOver()
         {
             Debug.Log("Game Over!!!");
@@ -158,6 +166,7 @@ namespace ShootingGame
                     yield return new WaitForSeconds(0.1f);
                 }
             }
+            GameObject.Find("ItemSpawner").GetComponent<ItemSpawner>().SetTimer(diff.ITEM_WAITTIME);
             // 진짜 게임 시작
             yield return null;
 

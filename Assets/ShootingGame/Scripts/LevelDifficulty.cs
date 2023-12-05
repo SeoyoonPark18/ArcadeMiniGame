@@ -18,6 +18,7 @@ namespace ShootingGame
         public float toySpeed;
         public float toySize;
         public int bound;
+        public float itemWaitTime;
 
         public Difficulty DIFFICULTY => difficulty;
         public float FIRE_COUNTDOWN => fireCountdown;
@@ -25,6 +26,7 @@ namespace ShootingGame
         public float TOY_SPEED => toySpeed;
         public float TOY_SIZE => toySize;
         public int BOUND => bound;
+        public float ITEM_WAITTIME => itemWaitTime;
     }
 
     public class GetDifficulty
@@ -38,7 +40,8 @@ namespace ShootingGame
                 bulletCount = 30,
                 toySpeed = 0f,
                 toySize = 1f,
-                bound = 3
+                bound = 3,
+                itemWaitTime = 5f
             };
 
         }
@@ -51,7 +54,8 @@ namespace ShootingGame
                 bulletCount = 30,
                 toySpeed = 0.5f,
                 toySize = 1f,
-                bound = 5
+                bound = 5,
+                itemWaitTime = 3f
             };
         }
         public static LevelDifficulty GetHard()
@@ -63,7 +67,8 @@ namespace ShootingGame
                 bulletCount = 30,
                 toySpeed = 1f,
                 toySize = 0.5f,
-                bound = 8
+                bound = 8,
+                itemWaitTime = 1f
             };
         }
     }

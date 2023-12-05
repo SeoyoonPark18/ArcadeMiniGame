@@ -7,11 +7,19 @@ namespace ShootingGame
 
     public class PowerBomb : MonoBehaviour
     {
+        [SerializeField] private GameObject hitEffect;
+
         private void OnCollisionEnter(Collision collision)
         {
             if(collision.transform.CompareTag("Toy"))
             {
-                // TODO ¿Ã∆Â∆Æ
+                // ¿Ã∆Â∆Æ
+                if (hitEffect != null)
+                {
+                    GameObject fx = Instantiate(hitEffect, collision.GetContact(0).point, hitEffect.transform.rotation);
+                }
+
+                // ∞≠»≠√—æÀ »˚¡÷±‚
                 Rigidbody rigid = collision.transform.GetComponent<Rigidbody>();
                 rigid.AddForce((collision.transform.position - transform.position) * 300, ForceMode.Impulse);
             }
