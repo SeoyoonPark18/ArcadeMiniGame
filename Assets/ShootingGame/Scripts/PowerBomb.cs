@@ -13,7 +13,7 @@ namespace ShootingGame
             {
                 // TODO ¿Ã∆Â∆Æ
                 Rigidbody rigid = collision.transform.GetComponent<Rigidbody>();
-                rigid.AddForce((collision.transform.position - transform.position) * 200, ForceMode.Impulse);
+                rigid.AddForce((collision.transform.position - transform.position) * 300, ForceMode.Impulse);
             }
         }
     }

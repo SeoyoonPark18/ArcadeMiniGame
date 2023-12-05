@@ -182,7 +182,7 @@ namespace ShootingGame
             {
                 yield return null;
                 m_fireCountdown -= Time.deltaTime;
-                Debug.Log(diff.FIRE_COUNTDOWN);
+                //Debug.Log(diff.FIRE_COUNTDOWN);
                 slider.value = (float)(m_fireCountdown / diff.FIRE_COUNTDOWN);
                 if (m_fireCountdown < 0)
                 {

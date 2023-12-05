@@ -12,6 +12,9 @@ namespace CamRotate
         //회전 값 변수
         private float mx = 0;
 
+        // 가로 회전 제한 변수
+        private float horizontalLimit = 45f;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -28,12 +31,18 @@ namespace CamRotate
             float yRot = Input.GetAxis("Mouse X")*rotSpeed;
             //현재 y축 회전값에 더한 새로운 회전각도 계산
             float my = transform.eulerAngles.y + yRot;
+            // 좌우 제한 테스트
+            if(my > 180 && my < 360 && my < 360 - horizontalLimit)
+                my = 360 - horizontalLimit;
+            else if(my < 180 && my > 0 && my > horizontalLimit)
+                my = horizontalLimit;
 
             //위아래로 움직인 마우스의 이동량 * 속도
             float xRot = -Input.GetAxis("Mouse Y") * rotSpeed;
 
             //상하 회전을 -45~ 80도로 제한
-            mx = Mathf.Clamp(mx + xRot, -45f, 80f); //수학관련함수: Mathf. Clapm(최소 최대값 설정해서 float값이 범이 이외의 값을 넘지 않도록)
+            mx = Mathf.Clamp(mx + xRot, -45f, 80f); //수학관련함수: Mathf.Clamp(최소 최대값 설정해서 float값이 범이 이외의 값을 넘지 않도록)
+
 
             //카메라 회전
             transform.eulerAngles = new Vector3(mx, my, 0); //회전시키는 함수에 축 값을 넣어줌
