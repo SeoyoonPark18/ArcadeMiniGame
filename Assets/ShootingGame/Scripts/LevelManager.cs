@@ -40,6 +40,7 @@ namespace ShootingGame
         private Canvas canvas;
         public List<BlockImage> pooImagePrefabs = new List<BlockImage>(); // 화면 가리는 방해 이미지
 
+
         private void Awake()
         {
             // singleton
@@ -75,6 +76,7 @@ namespace ShootingGame
         {
             playerFiresEvent.AddListener(PlayerFiresListener);
             toyCollidesEvent.AddListener(ToyCollidesListener);
+
 
             // TODO 디버그용 나중에 삭제
             StartGame(Difficulty.Normal);
@@ -141,6 +143,7 @@ namespace ShootingGame
             {
                 // TODO 게임 승리
                 Debug.Log("GAME WIN!!!!!");
+                GameObject.Find("Round2-LiveMenu");
             }
             Debug.Log("cur toy: " + toyCounts);
         }
