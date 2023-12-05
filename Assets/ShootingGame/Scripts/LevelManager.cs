@@ -27,6 +27,7 @@ namespace ShootingGame
 
         private int bulletBuffCounts = 2;   // 사용 가능한 버프 개수
         public int BULLET_BUFF_COUNTS => bulletBuffCounts;
+        private int toyCounts = 0;
 
 
         // variants
@@ -42,7 +43,7 @@ namespace ShootingGame
         private void Awake()
         {
             // singleton
-            if(instance == null)
+            if (instance == null)
             {
                 instance = this;
             }
@@ -76,7 +77,7 @@ namespace ShootingGame
             toyCollidesEvent.AddListener(ToyCollidesListener);
 
             // TODO 디버그용 나중에 삭제
-            StartGame(Difficulty.Easy);
+            StartGame(Difficulty.Normal);
         }
 
         #region Functions
@@ -127,10 +128,19 @@ namespace ShootingGame
             int rnd = Random.Range(0, pooImagePrefabs.Count);
             BlockImage img = Instantiate(pooImagePrefabs[rnd], canvas.transform);
             RectTransform rect = img.GetComponent<RectTransform>();
-            float rndX = Random.Range(640, 1280);
-            float rndY = Random.Range(360, 720);
-            rect.position = new Vector3(rndX, rndY, 0);
+            //float rndX = Random.Range(640, 1280);
+            //float rndY = Random.Range(360, 720);
+            rect.position = new Vector3(960, 540, 0);
             Debug.Log("Ate Poo");
+        }
+        public void AddToy()
+        {
+            if (++toyCounts >= 18)
+            {
+                // TODO 게임 승리
+                Debug.Log("GAME WIN!!!!!");
+            }
+            Debug.Log("cur toy: " + toyCounts);
         }
         public void GameOver()
         {
@@ -159,7 +169,7 @@ namespace ShootingGame
         }
         void ToyCollidesListener()
         {
-            m_gameOverCountdown = 5f;
+            m_gameOverCountdown = GAME_OVER_COUNTDOWN;
         }
         void BombCount()
         {
@@ -169,7 +179,7 @@ namespace ShootingGame
             sb.Append(bulletCounts.ToString());
             if (BULLET_BUFF_COUNTS > 0)
                 sb.Append("</color>");
-            BombCountTx.text =  sb.ToString();
+            BombCountTx.text = sb.ToString();
         }
         #endregion
 
@@ -193,7 +203,7 @@ namespace ShootingGame
 
                     Vector3 rot = Camera.main.transform.position - spawnLists[i][j].position;
                     rot.y = 0;
-                    GameObject go = Instantiate(tgt, spawnLists[i][j].position, 
+                    GameObject go = Instantiate(tgt, spawnLists[i][j].position,
                         Quaternion.LookRotation(rot), toyParent);
                     //go.transform.localScale *= diff.TOY_SIZE;
                     yield return new WaitForSeconds(0.1f);
@@ -244,7 +254,7 @@ namespace ShootingGame
         IEnumerator ToyMoveCo()
         {
             yield return null;
-            for(int i = 0; i < toyParent.childCount; i++)
+            for (int i = 0; i < toyParent.childCount; i++)
             {
                 MovableToy mov = toyParent.GetChild(i).GetComponent<MovableToy>();
                 mov.SetSpeed(diff.TOY_SPEED);
@@ -252,17 +262,19 @@ namespace ShootingGame
             }
         }
 
+        float GAME_OVER_COUNTDOWN = 10f;
         float m_gameOverCountdown = 5f;
         IEnumerator CheckGameOver()
         {
-            while(true)
+            m_gameOverCountdown = GAME_OVER_COUNTDOWN;
+            while (true)
             {
                 yield return null;
                 m_gameOverCountdown -= Time.deltaTime;
                 if (m_gameOverCountdown < 0)
                     break;
             }
-            if(IS_GAMEOVER)
+            if (IS_GAMEOVER)
                 GameOver();
         }
         #endregion

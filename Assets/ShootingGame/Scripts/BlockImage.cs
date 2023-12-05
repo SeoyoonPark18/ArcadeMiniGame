@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BlockImage : MonoBehaviour
 {
-    public float duration = 2f;
+    public float duration = 2.5f;
     private float elapsed;
     private Image img;
 

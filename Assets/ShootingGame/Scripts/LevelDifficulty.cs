@@ -63,7 +63,7 @@ namespace ShootingGame
             return new LevelDifficulty
             {
                 difficulty = Difficulty.Hard,
-                fireCountdown = 5f,
+                fireCountdown = 7f,
                 bulletCount = 30,
                 toySpeed = 1f,
                 toySize = 0.5f,
