@@ -23,7 +23,7 @@ public class ModeStartUI : MonoBehaviour
     }
     public void QuitMenu()
     {
-        SceneManager.LoadScene(0);
+        Application.Quit();
     }
     public void ReroadGame()
     {
