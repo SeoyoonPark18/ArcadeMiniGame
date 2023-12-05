@@ -147,3 +147,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6470998eaf22a7242a1c8e6d7f16a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitEffect: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
