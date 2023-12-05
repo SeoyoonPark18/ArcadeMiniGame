@@ -26,6 +26,10 @@ namespace PlayerBomb
             //마우스 왼쪽 버튼 입력
             if (Input.GetMouseButtonDown(0))
             {
+                if(LevelManager.Instance.BULLET_COUNTS <= 0)
+                {
+                    return;
+                }
                 LevelManager.Instance.playerFiresEvent.Invoke();    // 플레이어 발사 이벤트 트리거
                 bool isBuffedBullet = LevelManager.Instance.UsePowerBullet();
 
