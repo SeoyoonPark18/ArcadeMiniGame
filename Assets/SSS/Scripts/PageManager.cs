@@ -15,7 +15,7 @@ public class PageManager : MonoBehaviour
     void Update()
     {
 
-        Cursor.lockState = CursorLockMode.Confined;
+        //Cursor.lockState = CursorLockMode.Confined;
 
     }
 
@@ -39,9 +39,10 @@ public class PageManager : MonoBehaviour
 
     public void RestartGame()
     {
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         //SceneManager.LoadScene("Round1");    // (현재 로드하고 있는 씬을 가져와라)
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("MainScene");
     }
 
     public void QuitGame()
