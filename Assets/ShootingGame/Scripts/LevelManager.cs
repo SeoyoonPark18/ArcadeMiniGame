@@ -40,6 +40,8 @@ namespace ShootingGame
         private Canvas canvas;
         public List<BlockImage> pooImagePrefabs = new List<BlockImage>(); // 화면 가리는 방해 이미지
 
+        public GameObject winMenu;
+        public GameObject loseMenu;
 
         private void Awake()
         {
@@ -78,7 +80,6 @@ namespace ShootingGame
             toyCollidesEvent.AddListener(ToyCollidesListener);
 
 
-            // TODO 디버그용 나중에 삭제
             if (MenuManager.level == 1)
             {
                 StartGame(Difficulty.Easy);
@@ -89,9 +90,13 @@ namespace ShootingGame
                 StartGame(Difficulty.Normal);
 
             }
-            else if (MenuManager.level >= 3)
+            else if (MenuManager.level == 3)
             {
                 StartGame(Difficulty.Hard);
+            }
+            else
+            {
+                StartGame(Difficulty.Easy);
 
             }
         }
@@ -140,7 +145,7 @@ namespace ShootingGame
         }
         public void AtePoo()
         {
-            // TODO 이미지 캔버스에 생성
+            // 이미지 캔버스에 생성
             int rnd = Random.Range(0, pooImagePrefabs.Count);
             Debug.Log(pooImagePrefabs.Count);
             Debug.Log(rnd);
@@ -155,9 +160,9 @@ namespace ShootingGame
         {
             if (++toyCounts >= 18)
             {
-                // TODO 게임 승리
+                // 게임 승리
                 Debug.Log("GAME WIN!!!!!");
-                GameObject.Find("Round2-LiveMenu");
+                winMenu.SetActive(true);
             }
             Debug.Log("cur toy: " + toyCounts);
         }
@@ -165,7 +170,8 @@ namespace ShootingGame
         {
             Debug.Log("Game Over!!!");
             isGameover = true;
-            // TODO 게임종료 UI 팝업
+            // 게임종료 UI 팝업
+            loseMenu.SetActive(true);
         }
         #endregion
 
@@ -283,7 +289,7 @@ namespace ShootingGame
             }
         }
 
-        float GAME_OVER_COUNTDOWN = 10f;
+        float GAME_OVER_COUNTDOWN = 5f;
         float m_gameOverCountdown = 5f;
         IEnumerator CheckGameOver()
         {
@@ -291,11 +297,12 @@ namespace ShootingGame
             while (true)
             {
                 yield return null;
+                Debug.Log(m_gameOverCountdown + " / " + GAME_OVER_COUNTDOWN);
                 m_gameOverCountdown -= Time.deltaTime;
                 if (m_gameOverCountdown < 0)
                     break;
             }
-            if (IS_GAMEOVER)
+            if (IS_GAMEOVER == false)
                 GameOver();
         }
         #endregion

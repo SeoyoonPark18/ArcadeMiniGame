@@ -712,6 +712,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ToyCabinit
       objectReference: {fileID: 0}
+    - target: {fileID: 1787599069256160332, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
+      propertyPath: winMenu
+      value: 
+      objectReference: {fileID: 1161585412}
+    - target: {fileID: 1787599069256160332, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
+      propertyPath: loseMenu
+      value: 
+      objectReference: {fileID: 1673843735}
     - target: {fileID: 8354382318836156618, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
