@@ -395,7 +395,13 @@ PrefabInstance:
       value: ShootingGame
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8823154891176048494, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
+    - {fileID: 8679558718761855538, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
+    - {fileID: -2932998491564163895, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
+    - {fileID: -3215555783603854218, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
+    - {fileID: 4424396828587804706, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
+    - {fileID: -1018664272722485354, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac937173cc77a944a10b1d99b69de9e, type: 3}
