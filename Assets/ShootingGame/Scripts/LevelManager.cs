@@ -28,7 +28,6 @@ namespace ShootingGame
         private int bulletBuffCounts = 2;   // 사용 가능한 버프 개수
         public int BULLET_BUFF_COUNTS => bulletBuffCounts;
 
-        private TextMeshProUGUI BombCountTx;
 
         // variants
         [SerializeField] private Transform[] serial_spawns = new Transform[5];  // 인스펙터용
@@ -36,6 +35,9 @@ namespace ShootingGame
 
         public List<GameObject> prefabs = new List<GameObject>();   // 생성할 인형 프리팹들
         Transform toyParent;    // 인형이 생성될 transfrom
+        private TextMeshProUGUI BombCountTx;    // 총알 개수 텍스트
+        private Canvas canvas;
+        public List<BlockImage> pooImagePrefabs = new List<BlockImage>(); // 화면 가리는 방해 이미지
 
         private void Awake()
         {
@@ -63,6 +65,9 @@ namespace ShootingGame
 
             // 총알 개수 카운트
             BombCountTx = GameObject.Find("TX_BombCount").GetComponent<TextMeshProUGUI>();
+
+            // 캔버스 찾기
+            canvas = GetComponentInChildren<Canvas>();
         }
 
         private void Start()
@@ -115,6 +120,17 @@ namespace ShootingGame
         {
             bulletBuffCounts++;
             BombCount();
+        }
+        public void AtePoo()
+        {
+            // TODO 이미지 캔버스에 생성
+            int rnd = Random.Range(0, pooImagePrefabs.Count);
+            BlockImage img = Instantiate(pooImagePrefabs[rnd], canvas.transform);
+            RectTransform rect = img.GetComponent<RectTransform>();
+            float rndX = Random.Range(640, 1280);
+            float rndY = Random.Range(360, 720);
+            rect.position = new Vector3(rndX, rndY, 0);
+            Debug.Log("Ate Poo");
         }
         public void GameOver()
         {

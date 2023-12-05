@@ -270,9 +270,13 @@ PrefabInstance:
       value: ToyCabinit
       objectReference: {fileID: 0}
     - target: {fileID: 1787599069256160332, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
-      propertyPath: BombCountTx
+      propertyPath: pooImagePrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787599069256160332, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
+      propertyPath: pooImagePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 991888233}
+      objectReference: {fileID: 4729585094892074904, guid: cdba666589b760349a54fb9878e9cc79, type: 3}
     - target: {fileID: 8354382318836156618, guid: 8cc965951fd88264c9a1a1c301ee703b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

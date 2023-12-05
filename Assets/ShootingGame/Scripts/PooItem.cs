@@ -18,8 +18,8 @@ namespace ShootingGame
                     GameObject fx = Instantiate(hitEffect, transform.position, transform.rotation);
                 }
 
-                // TODO 방해 아이템 사용
-                //LevelManager.Instance.AddPowerBullet();
+                // 방해 아이템 사용
+                LevelManager.Instance.AtePoo();
                 Destroy(this.gameObject);
             }
         }

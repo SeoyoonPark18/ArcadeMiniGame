@@ -15,7 +15,7 @@ namespace ShootingGame
 
         public void SetTimer(float v_timer)
         {
-            // TODO waitTime = v_timer;
+            waitTime = v_timer;
             StartCoroutine(StartTimer());
         }
 
@@ -23,8 +23,6 @@ namespace ShootingGame
         {
             while (true)
             {
-                yield return new WaitForSeconds(waitTime);
-                // TODO 랜덤 아이템 생성
                 int itemSelect = Random.Range(0, 2);
                 int itemPosSelect = Random.Range(0, transform.childCount);
                 if(itemSelect == 0) // 버프아이템 생성
@@ -39,6 +37,7 @@ namespace ShootingGame
                         transform.GetChild(itemPosSelect).transform.rotation);
                     go.GetComponent<Rigidbody>().AddForce(go.transform.forward * shootPower, ForceMode.Impulse);
                 }
+                yield return new WaitForSeconds(waitTime);
             }
         }
     }
