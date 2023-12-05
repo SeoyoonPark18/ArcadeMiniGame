@@ -163,6 +163,7 @@ MonoBehaviour:
   - {fileID: 5772249600451402333, guid: dc6a783849b85604e86bfac288615b26, type: 3}
   pooImagePrefabs:
   - {fileID: 4729585094892074904, guid: cdba666589b760349a54fb9878e9cc79, type: 3}
+  - {fileID: 4729585094892074904, guid: 1acb60249abcdbc4f9c1ada7564b04d1, type: 3}
 --- !u!1 &1549292527740958202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1197,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4683669308469848369, guid: 0f64f628221dacc4e8f38a8a6106ad27, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1546f611814b3b4e814bfc4a6047b1d, type: 2}
     - target: {fileID: 919132149155446097, guid: 0f64f628221dacc4e8f38a8a6106ad27, type: 3}
       propertyPath: m_Name
       value: cabinit_uv

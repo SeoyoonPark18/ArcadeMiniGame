@@ -126,6 +126,8 @@ namespace ShootingGame
         {
             // TODO 이미지 캔버스에 생성
             int rnd = Random.Range(0, pooImagePrefabs.Count);
+            Debug.Log(pooImagePrefabs.Count);
+            Debug.Log(rnd);
             BlockImage img = Instantiate(pooImagePrefabs[rnd], canvas.transform);
             RectTransform rect = img.GetComponent<RectTransform>();
             //float rndX = Random.Range(640, 1280);
@@ -156,6 +158,8 @@ namespace ShootingGame
         /// </summary>
         void PlayerFiresListener()
         {
+            if (bulletCounts == 0)
+                return;
             m_fireCountdown = diff.FIRE_COUNTDOWN;  // 총알 제한 발사 시간 초기화
             if (--bulletCounts == 0)
             {
